@@ -66,22 +66,23 @@ public class TimeManager {
     public static String getDiffTime() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try{
+            if(!"".equals(getFirstTime()) && !"".equals(getSystemTime())){
 //            Date d1 = df.parse("2016-11-18 10:00:00");
-            Date d1 = df.parse(getFirstTime());                 //第一次进来时间
-            Date d2 = df.parse(String.valueOf(getSystemTime()));//现在时间
-
-            long diff = d2.getTime() - d1.getTime();
-           // Log.i("TAG" , "diff===" +diff);
-            long days = diff / (1000 * 60 * 60 * 24);
-            long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
-            long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
-            //String diffTime ="天:" + days + " 小时:" + hours + " 分钟:" + minutes;
-
-            BigDecimal b1 = new BigDecimal(days*24*60);
-            BigDecimal b2 = new BigDecimal(hours*60);
-            BigDecimal b3 = new BigDecimal(minutes);
-            String b4 = b1.add(b2).add(b3).toString();
-            return b4;
+                Date d1 = df.parse(getFirstTime());                 //第一次进来时间
+                Date d2 = df.parse(String.valueOf(getSystemTime()));//现在时间
+                long diff = d2.getTime() - d1.getTime();
+                // Log.i("TAG" , "diff===" +diff);
+                long days = diff / (1000 * 60 * 60 * 24);
+                long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+                long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+                //String diffTime ="天:" + days + " 小时:" + hours + " 分钟:" + minutes;
+                BigDecimal b1 = new BigDecimal(days*24*60);
+                BigDecimal b2 = new BigDecimal(hours*60);
+                BigDecimal b3 = new BigDecimal(minutes);
+                String b4 = b1.add(b2).add(b3).toString();
+                return b4;
+            }
+            return null;
         }catch (ParseException e){
             e.printStackTrace();
             return null;
@@ -125,13 +126,21 @@ public class TimeManager {
     }
     //是否没时间了
     public static boolean isTimeout(){
-        int totalTime = Integer.valueOf(getLeftTime()); //总时间
-        int useTime = Integer.valueOf(getDiffTime());   //使用时间
-        int leftTime = totalTime - useTime;             //时间差
-        if (leftTime <= 0){
-            setFirstTime();
-            setLeftTime("0");
-            return true;
+        try{
+            if (!"".equals(getLeftTime())&& !"".equals(getDiffTime())){
+                int totalTime = Integer.valueOf(getLeftTime()); //总时间
+                int useTime = Integer.valueOf(getDiffTime());   //使用时间
+                int leftTime = totalTime - useTime;             //时间差
+                if (leftTime <= 0){
+                    setFirstTime();
+                    setLeftTime("0");
+                    return true;
+                }
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
         }
         return false;
     }

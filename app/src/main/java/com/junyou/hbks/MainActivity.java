@@ -207,16 +207,18 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
                         setCurTime(getResources().getString(R.string.forever));
                         return;
                     }
-                    int totalTime = Integer.valueOf(TimeManager.getLeftTime());
-                    int useTime = Integer.valueOf(TimeManager.getDiffTime());
-                    int leftTime = totalTime - useTime;
+                    if (!"".equals(TimeManager.getLeftTime())&& !"".equals(TimeManager.getDiffTime())){
+                        int totalTime = Integer.valueOf(TimeManager.getLeftTime());
+                        int useTime = Integer.valueOf(TimeManager.getDiffTime());
+                        int leftTime = totalTime - useTime;
 //                    Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(""+ leftTime));
-                    setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
-                     if (TimeManager.isTimeout()){
-                         //没有时间了
-                         setCurTime( "0天" +"0小时"+"0分钟");
+                        setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
+                        if (TimeManager.isTimeout()){
+                            //没有时间了
+                            setCurTime( "0天" +"0小时"+"0分钟");
 //                         Log.i("TAG","没有时间了");
-                     }
+                        }
+                    }
                     break;
             }
         }
@@ -235,17 +237,20 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
             setCurTime(getResources().getString(R.string.forever));
             return;
         }
-        int totalTime = Integer.valueOf(TimeManager.getLeftTime());
-        int useTime = Integer.valueOf(TimeManager.getDiffTime());
-        int leftTime = totalTime - useTime;
-//      Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(""+ leftTime));
-        setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
-        if (TimeManager.isTimeout()){
-            //没有时间了
-            setCurTime( "0天" +"0小时"+"0分钟");
-        }
 
+        if (!"".equals(TimeManager.getLeftTime())&& !"".equals(TimeManager.getDiffTime())) {
+            int totalTime = Integer.valueOf(TimeManager.getLeftTime());
+            int useTime = Integer.valueOf(TimeManager.getDiffTime());
+            int leftTime = totalTime - useTime;
+//      Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(""+ leftTime));
+            setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
+            if (TimeManager.isTimeout()){
+                //没有时间了
+                setCurTime( "0天" +"0小时"+"0分钟");
+            }
+        }
     }
+
     private CharSequence getSystemTime() {
         long sysTime = System.currentTimeMillis();
         return  DateFormat.format("yyyy-MM-dd HH:mm:ss",sysTime);

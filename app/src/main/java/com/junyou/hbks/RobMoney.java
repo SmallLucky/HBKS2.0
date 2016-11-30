@@ -1117,6 +1117,12 @@ notification.flags |= Notification.FLAG_INSISTENT; // 一直进行，比如音�
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void recycle(AccessibilityNodeInfo info)
     {
+        if(info == null){
+            return;
+        }
+//        if(!"android.widget.TextView".equals(info.getClassName())){
+//                return;
+//        }
         if (info.getChildCount() == 0)
         {
 //            Log.e("TAG", "child widget----------------------------" + info.getClassName());
