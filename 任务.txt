@@ -1,0 +1,18 @@
+1.支付换成微信		ok
+2.排查小米官网给的错误  
+3.去掉多余权限  ok
+4.不用开机启动   ok
+5.使用安全软件查毒  360,腾讯等  ok
+6.设置里开关按钮没了  ok
+7.消灭星星的新旧包弄好给新可  ok
+
+三个错误：
+1.  ok
+java.lang.NullPointerException,Binary XML file line #7: Error inflating class fragment,ArticleListFragment.java,280]
+  
+2.
+java.lang.NullPointerException,Unable to resume activity {com.android.settings/com.android.settings.Settings$AccessibilitySettingsActivity}: java.lang.NullPointerException,AccessibilitySettings.java,723]
+
+3.
+
+ java.lang.RuntimeException: Unable to resume activity {com.android.settings/com.android.settings.Settings$AccessibilitySettingsActivity}: java.lang.NullPointerException
