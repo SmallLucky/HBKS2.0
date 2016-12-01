@@ -15,18 +15,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.junyou.hbks.Utils.ShareHelper;
+import com.junyou.hbks.Utils.TimeManager;
+import com.junyou.hbks.Utils.UmengUtil;
 import com.umeng.analytics.MobclickAgent;
 
 import com.junyou.hbks.fragments.SettingFragment;
-
-import java.sql.Time;
 
 public class SettingActivity extends FragmentActivity
 {

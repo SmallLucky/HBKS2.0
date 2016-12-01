@@ -34,9 +34,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.switfpass.pay.MainApplication;
-//import com.switfpass.pay.activity.PayPlugin;
-//import com.switfpass.pay.bean.RequestMsg;
+import com.junyou.hbks.Utils.ShareHelper;
+import com.junyou.hbks.Utils.TimeManager;
+import com.junyou.hbks.Utils.TimeUtils;
+import com.junyou.hbks.Utils.UmengUtil;
 import com.junyou.hbks.apppayutils.ComFunction;
 import com.junyou.hbks.apppayutils.WXPayUtil;
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
@@ -1066,6 +1067,18 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
         if (null != dialog_openShare)
             dialog_openShare.show();
         UmengUtil.YMclk_share(this);
+    }
+
+    public void superVipClick(View view)
+    {
+        Log.i("TAG", "点击弹出超级VIP弹窗");
+        try {
+            Intent settingAvt = new Intent(this,VipActivity.class);
+            startActivity(settingAvt);
+            UmengUtil.YMclk_vipbutton(MainActivity.this);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void openServiceClick(View view)

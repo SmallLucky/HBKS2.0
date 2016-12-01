@@ -3,10 +3,9 @@ package com.junyou.hbks.wxapi;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.junyou.hbks.TimeManager;
+import com.junyou.hbks.Utils.TimeManager;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -18,8 +17,6 @@ import com.umeng.analytics.social.UMPlatformData;
 
 import com.junyou.hbks.Constants;
 import com.junyou.hbks.MainActivity;
-
-import java.sql.Time;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
 

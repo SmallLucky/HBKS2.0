@@ -27,8 +27,8 @@ java.lang.NullPointerException,Unable to resume activity {com.android.settings/c
 	签到，每天获取免费时间一小时
 	分享每次获取三小时
 
-3.跑马灯信息重新修改
-4.主界面添加计费点，VIP
+3.跑马灯信息重新修改  ok
+4.主界面添加计费点，VIP  OK
 5.右上角设置与帮助按钮换位置
 6.添加抢红包音效
 7.添加抽奖程序

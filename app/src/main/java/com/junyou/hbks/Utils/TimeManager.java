@@ -1,9 +1,10 @@
-package com.junyou.hbks;
+package com.junyou.hbks.Utils;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.text.format.DateFormat;
-import android.util.Log;
+
+import com.junyou.hbks.Constants;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -34,8 +35,8 @@ public class TimeManager {
             editor.putInt(FIRST_TIME_MARK,99);
             editor.apply();
             //设置拥有时间
-            setLeftTime("2880");      //48*60分钟 2天时间(单位：分钟)
-           // setLeftTime("4320");       //三天
+//            setLeftTime("2880");      //48*60分钟 2天时间(单位：分钟)
+            setLeftTime("4320");       //三天
 //            setLeftTime("1");
         }
     }

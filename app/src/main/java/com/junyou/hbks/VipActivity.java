@@ -9,6 +9,7 @@ import android.widget.Toast;
 //import com.switfpass.pay.MainApplication;
 //import com.switfpass.pay.activity.PayPlugin;
 //import com.switfpass.pay.bean.RequestMsg;
+import com.junyou.hbks.Utils.UmengUtil;
 import com.junyou.hbks.apppayutils.ComFunction;
 import com.junyou.hbks.apppayutils.WXPayUtil;
 import com.umeng.analytics.MobclickAgent;

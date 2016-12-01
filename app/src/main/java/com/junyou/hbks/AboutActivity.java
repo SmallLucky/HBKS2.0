@@ -10,10 +10,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.junyou.hbks.Utils.ShareHelper;
 import com.umeng.analytics.MobclickAgent;
 
 import com.junyou.hbks.fragments.AboutFragment;

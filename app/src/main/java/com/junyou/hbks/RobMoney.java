@@ -23,6 +23,8 @@ import android.view.Display;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.junyou.hbks.Utils.UmengUtil;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

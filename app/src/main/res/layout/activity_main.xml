@@ -313,12 +313,13 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="-13dp" />
 
-    <!--<ImageButton-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/bat_pop_yellow_three"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:onClick=""/>-->
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/bat_pop_yellow_three"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="superVipClick"/>
 </RelativeLayout>

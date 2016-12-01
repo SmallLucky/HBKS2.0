@@ -2,18 +2,16 @@ package com.junyou.hbks.fragments;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.junyou.hbks.UmengUtil;
+import com.junyou.hbks.Utils.UmengUtil;
 import com.umeng.analytics.MobclickAgent;
 
 import com.junyou.hbks.AboutActivity;
