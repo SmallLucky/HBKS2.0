@@ -127,7 +127,7 @@
         android:layout_toLeftOf="@+id/marquee_text"
         android:layout_marginBottom="3dp"/>
     <!--我要的跑马灯呢?-->
-    android:layout_toRightOf="@id/id_trumpet"
+    <!--android:layout_toRightOf="@id/id_trumpet"-->
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -281,46 +281,44 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:id="@+id/under_icon_clock"
-        android:src="@mipmap/under_icon_clock_good"
+        android:layout_height="wrap_content"
+        android:id="@+id/under_clock"
+        android:background="@mipmap/under_icon_clock_good"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:onClick="getMoreTime"/>
+        android:layout_marginRight="12dp"
+        android:onClick="getMoreTime">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/left_days_text"
+            android:text="永久使用"
+            android:textSize="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:singleLine="true"
+            android:textColor="@color/colorBG"/>
+    </RelativeLayout>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/under_icon_tool"
         android:src="@mipmap/under_icon_tooltip"
-        android:layout_above="@+id/under_icon_clock"
+        android:onClick="getMoreTime"
+        android:layout_above="@+id/under_clock"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="55dp"
-        android:layout_marginBottom="-10dp"
-        android:onClick="getMoreTime"/>
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="-13dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/left_days_text"
-        android:text="永久使用"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="25dp"
-        android:textSize="16dp"
-        android:textColor="@color/colorBG"/>
-    <!--<TextView-->
+    <!--<ImageButton-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/time_label"-->
-        <!--android:text="0:00"-->
+        <!--android:src="@mipmap/bat_pop_yellow_three"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:layout_centerHorizontal="true"-->
         <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_marginBottom="25dp"-->
-        <!--android:textSize="30dp"-->
-        <!--android:textColor="@color/colorBG"/>-->
+        <!--android:onClick=""/>-->
 </RelativeLayout>

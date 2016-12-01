@@ -35,6 +35,7 @@ public class TimeManager {
             editor.apply();
             //设置拥有时间
             setLeftTime("2880");      //48*60分钟 2天时间(单位：分钟)
+           // setLeftTime("4320");       //三天
 //            setLeftTime("1");
         }
     }
@@ -100,7 +101,7 @@ public class TimeManager {
         int min = m - d * 24 * 60 - h * 60;
 //        Log.i("TAG" , "days:"+ d + "  hours:"+ h + " minutes:" + min);
 //        return "" + days + "天 " + hours + "小时";
-//        return "" + d + "天" + h + "小时" + min + "分钟";
+       //return "" + d + "天" + h + "小时" + min + "分钟";
         return "" + d + "天" + h + "小时";
     }
     //添加时间(分钟)

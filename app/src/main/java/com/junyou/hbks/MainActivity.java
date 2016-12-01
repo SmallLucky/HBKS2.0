@@ -177,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
         newShowLeftDays();
         initTime();
         new TimeThread().start();
+        showSettingDialog();
+        //Log.i("TAG", "onCreate: <<<<<<<<<<<<<<<<<<<<<");
 }
 
     class TimeThread extends Thread {
@@ -215,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
                         setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
                         if (TimeManager.isTimeout()){
                             //没有时间了
-                            setCurTime( "0天" +"0小时"+"0分钟");
+                            setCurTime("时间用完");
 //                         Log.i("TAG","没有时间了");
                         }
                     }
@@ -227,6 +229,15 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
     private void setCurTime(CharSequence curtime) {
         if (null != left_days_text){
             left_days_text.setText(curtime);
+        }
+    }
+
+    private void showSettingDialog(){
+        if(!isServiceEnabled()){
+            if (null != dialog_openSvs)
+            {
+                dialog_openSvs.show();
+            }
         }
     }
 
@@ -246,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
             setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
             if (TimeManager.isTimeout()){
                 //没有时间了
-                setCurTime( "0天" +"0小时"+"0分钟");
+                setCurTime( "时间用完");
             }
         }
     }
@@ -367,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
                         int num = (int)(Math.random()*12);  //0-11
                         if (null != marquee_text)
                         {
-                            marquee_text.setText(marquee_lists[num]);
+                            //marquee_text.setText(marquee_lists[num]);
                         }
                     }
                     break;

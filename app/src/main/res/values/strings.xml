@@ -22,18 +22,18 @@
     <string name="action_clickToGradp">点击按钮开始抢红包</string>
     <string name="title_activity_setting">设置</string>
 
-    <string name="marquee_word_1">喜报:恭喜尾号为4125的用户抢到1475个红包,总金额679.95元</string>
-    <string name="marquee_word_2">喜报:恭喜尾号为9356的用户抢到1024个红包,总金额579.62元</string>
-    <string name="marquee_word_3">喜报:恭喜尾号为7563的用户抢到956个红包,总金额459.01元</string>
-    <string name="marquee_word_4">喜报:恭喜尾号为4546的用户抢到601个红包,总金额379.32元</string>
-    <string name="marquee_word_5">喜报:恭喜尾号为7834的用户抢到464个红包,总金额285.45元</string>
-    <string name="marquee_word_6">喜报:恭喜尾号为7454的用户抢到578个红包,总金额235.45元</string>
-    <string name="marquee_word_7">喜报:恭喜尾号为4566的用户抢到789个红包,总金额363.45元</string>
-    <string name="marquee_word_8">喜报:恭喜尾号为7656的用户抢到875个红包,总金额467.45元</string>
-    <string name="marquee_word_9">喜报:恭喜尾号为8765的用户抢到357个红包,总金额150.45元</string>
-    <string name="marquee_word_10">喜报:恭喜尾号为2387的用户抢到1023个红包,总金额547.45元</string>
-    <string name="marquee_word_11">喜报:恭喜尾号为6545的用户抢到976个红包,总金额478.45元</string>
-    <string name="marquee_word_12">喜报:恭喜尾号为8764的用户抢到868个红包,总金额563.45元</string>
+    <string name="marquee_word_1">喜报:恭喜尾号为4125的用户抢到105个红包,总金额96.36元</string>
+    <string name="marquee_word_2">喜报:恭喜尾号为9356的用户抢到121个红包,总金额100.62元</string>
+    <string name="marquee_word_3">喜报:恭喜尾号为7563的用户抢到165个红包,总金额130.01元</string>
+    <string name="marquee_word_4">喜报:恭喜尾号为4546的用户抢到184个红包,总金额150.32元</string>
+    <string name="marquee_word_5">喜报:恭喜尾号为7834的用户抢到196个红包,总金额165.45元</string>
+    <string name="marquee_word_6">喜报:恭喜尾号为7454的用户抢到205个红包,总金额172.45元</string>
+    <string name="marquee_word_7">喜报:恭喜尾号为4566的用户抢到235个红包,总金额201.45元</string>
+    <string name="marquee_word_8">喜报:恭喜尾号为7656的用户抢到265个红包,总金额250.45元</string>
+    <string name="marquee_word_9">喜报:恭喜尾号为8765的用户抢到298个红包,总金额255.45元</string>
+    <string name="marquee_word_10">喜报:恭喜尾号为2387的用户抢到325个红包,总金额305.45元</string>
+    <string name="marquee_word_11">喜报:恭喜尾号为6545的用户抢到350个红包,总金额315.45元</string>
+    <string name="marquee_word_12">喜报:恭喜尾号为8764的用户抢到349个红包,总金额346.45元</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
