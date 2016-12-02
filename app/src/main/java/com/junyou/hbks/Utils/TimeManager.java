@@ -51,8 +51,10 @@ public class TimeManager {
     //设置刚进来的时间
     public static void setFirstTime(){
         if (null != editor)
+        {
             editor.putString(FIRST_TIME,""+ getSystemTime());
             editor.apply();
+        }
 //        Log.i("TAG","设置第一次进来时间: " + getSystemTime());
     }
 

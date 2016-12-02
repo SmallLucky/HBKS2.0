@@ -6,9 +6,11 @@ import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -26,6 +28,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.junyou.hbks.Utils.ShareHelper;
+import com.junyou.hbks.Utils.SignInUtil;
 import com.junyou.hbks.Utils.TimeManager;
 import com.junyou.hbks.Utils.TimeUtils;
 import com.junyou.hbks.Utils.UmengUtil;
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
     //左上角两个个按钮
     private ImageButton setting_imagebtn;
     private ImageButton help_imagebtn;
+    private Button signed_btn;  //签到按钮
 
     private RelativeLayout shouldOpenServer_layout;
 
@@ -99,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
 
     //sdk 相关
     private IWXAPI wxAPI;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -148,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
         if (help_imagebtn != null){
             help_imagebtn.setOnClickListener(onClickHelp);
         }
+
+        signed_btn = (Button) findViewById(R.id.signedIn_btn);
         //顶部图片
         top_image = (ImageView) findViewById(R.id.top_img_show);
 
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
         //跑马灯文本
         marquee_text = (TextView) findViewById(R.id.marquee_text);
         //广播
-       bor_intent = new Intent("junyou.com.hbtools.RECEIVER");
+       bor_intent = new Intent("com.junyou.hbks.SETTING");
 
         updateServiceStatus();
         showDatas();
@@ -179,7 +185,9 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
         initTime();
         new TimeThread().start();
         showSettingDialog();
-        //Log.i("TAG", "onCreate: <<<<<<<<<<<<<<<<<<<<<");
+        SignInUtil.init(this);
+        Log.i("TAG", "onCreate: <<<<<<<<<<<<<<<<<<<<<" + SignInUtil.getCurTime());
+        setSignedBtn();
 }
 
     class TimeThread extends Thread {
@@ -1406,6 +1414,42 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
     {
         if (dialog_open_vip != null){
             dialog_open_vip.dismiss();
+        }
+    }
+
+    private void setSignedBtn(){
+        if(SignInUtil.isNewDay()){
+            if(!SignInUtil.getSignedToday()) {
+                if (null != signed_btn){
+                    signed_btn.setText("点击签到");
+                    Log.i("TAG","没有签到、");
+                }
+            }
+        }else{
+            if (null != signed_btn){
+                signed_btn.setText("已经签到");
+                Log.i("TAG","签到了、");
+
+            }
+        }
+    }
+
+    public void signedInClick(View view){
+        if(SignInUtil.isNewDay()){
+            //Log.i("TAG","is new day......");
+            if(!SignInUtil.getSignedToday()){
+                SignInUtil.setSignedToday(true);
+                SignInUtil.setFirstTime(SignInUtil.getCurTime());
+                SignInUtil.addSignedCont();
+                Log.i("TAG","没有签到......签到" + SignInUtil.getSignedCount() + "天");
+                if (null != signed_btn){
+                    signed_btn.setText("已经签到");
+                }
+            }else{
+                Log.i("TAG","已经签到......");
+            }
+        }else{
+            Log.i("TAG","not new day......");
         }
     }
 }

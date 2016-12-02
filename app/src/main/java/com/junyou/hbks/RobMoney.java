@@ -19,10 +19,12 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.junyou.hbks.Utils.SoundUtil;
 import com.junyou.hbks.Utils.UmengUtil;
 
 import java.math.BigDecimal;
@@ -78,6 +80,7 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
     private MsgReceiver msgReceiver;
     public boolean mIsWeChatOn = true;
     public boolean mIsQQOn = true;
+
     //-----------锁屏、唤醒相关---------------//
     //锁屏判断
     private boolean isScreenOff;
@@ -136,12 +139,12 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
     {
         super.onCreate();
         instance = this;
-//        Log.i("TAG","service onCreate");
         //动态注册广播接收器
         msgReceiver = new MsgReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("junyou.com.hbtools.RECEIVER");
+        intentFilter.addAction("com.junyou.hbks.SETTING");
         registerReceiver(msgReceiver, intentFilter);
+        SoundUtil.initSoundPool(this);
     }
 
     public static RobMoney getInstance()
@@ -155,7 +158,6 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event)
     {
-            //todo  应该判断窗口的动态，而不是时时检测微信和qq,这样会浪费资源
 //        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED)     //屏幕内容变化
 //        if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED)         //屏幕状态变化
 
@@ -187,7 +189,9 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
         if (!mMutex)
         {
             //是否是红包的判断，若是红包就打开消息栏进入该软件，若不是红包直接返回
-            if (watchNotifications(event)) return;
+            if (watchNotifications(event)){
+                return;
+            }
             //若是红包，执行点击红包的操作
             if (mIsQQOn){
                 if(openQQHongbao(event)) return;
@@ -262,7 +266,7 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
         if (mIsWeChatOn && mIsQQOn ){
 //            Log.i("TAG", "...都开" );
             if (tip.contains(WECHAT_NOTIFICATION_TIP) || tip.contains(QQ_HONGBAO_TEXT_KEY)) {
-//                Log.i("TAG","是微信或者qq红包~~~");
+                SoundUtil.playSounds(1,0);
                 mIsEnterWeChatList = true;
                 if (event.getParcelableData() == null || !(event.getParcelableData() instanceof Notification)) {
                     return false;
@@ -297,6 +301,7 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
 //            Log.i("TAG", "...微信开，qq关" );
             if (tip.contains(WECHAT_NOTIFICATION_TIP)) {
 //                Log.i("TAG","是微信红包~~~");
+                SoundUtil.playSounds(1,0);
                 mIsEnterWeChatList = true;
                 if (event.getParcelableData() == null || !(event.getParcelableData() instanceof Notification)) {
                     return false;
@@ -329,6 +334,7 @@ public class RobMoney extends AccessibilityService implements SharedPreferences.
 //            Log.i("TAG", "...微信关，qq开" );
             if (tip.contains(QQ_HONGBAO_TEXT_KEY)) {
 //                Log.i("TAG","是qq红包~~~");
+                SoundUtil.playSounds(1,0);
                 if (event.getParcelableData() == null || !(event.getParcelableData() instanceof Notification)) {
                     return false;
                 }

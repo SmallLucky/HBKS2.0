@@ -1,36 +1,37 @@
 package com.junyou.hbks.Utils;
 
-import android.app.Activity;
-import android.content.Context;
+import android.accessibilityservice.AccessibilityService;
 import android.media.AudioManager;
 import android.media.SoundPool;
-
+import android.util.Log;
 import com.junyou.hbks.R;
-
 import java.util.HashMap;
 
 public class SoundUtil {
 
-    HashMap soundPoolMap;
-    private SoundPool soundPool;
-    private Activity _activity;
+    private static HashMap<Integer, Integer> hashMap;
+    private static SoundPool soundPool;
+    private static int currStreamId;
+    private static AccessibilityService _mContext;
 
-    public void initSound(Activity context) {
-        _activity = context;
-        if (null != _activity){
-            soundPoolMap = new HashMap();
-            soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
-            soundPoolMap.put(1, soundPool.load(_activity, R.raw.qhb, 1));
+    public static void initSoundPool(AccessibilityService context) {
+        _mContext = context;
+        if (null != _mContext){
+            hashMap = new HashMap<Integer, Integer>();
+            soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);//最多能同时播放3个音效
+            hashMap.put(1, soundPool.load(_mContext, R.raw.qhb, 1));
         }
     }
-
-    public void playSounds(int count) {
-        if (null != _activity){
-            AudioManager am = (AudioManager) _activity.getSystemService(_activity.AUDIO_SERVICE);
-            float audioMaxVolumn = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            float audioCurrentVolumn = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-            float volumnRatio = audioCurrentVolumn / audioMaxVolumn;
-            soundPool.play((int)soundPoolMap.get(count), audioCurrentVolumn, audioCurrentVolumn, 1, 0, (float) 2.0);
+    //loop : 音效循环的次数 , 0为不循环 , -1为永远循环;
+    public static void playSounds(int sound,int loop) {
+        if (null != _mContext){
+            AudioManager audioManager = (AudioManager) _mContext.getSystemService(_mContext.AUDIO_SERVICE);
+            float currVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            float maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            float volume = currVolume / maxVolume;
+            currStreamId = soundPool.play(hashMap.get(sound), volume, volume, 1, loop, 1.0f);
+           // Log.i("TAG","currStreamId: " + currStreamId);
+           // soundPool.play((int)hashMap.get(sound), currVolume, currVolume, 1, 0, (float) 2.0);
         }
 
         //实例化AudioManager对象，控制声音
@@ -39,5 +40,8 @@ public class SoundUtil {
 //        float audioMaxVolumn = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         //当前音量
 //        float audioCurrentVolumn = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+       // soundPool.stop(currStreamId);        //暂停
+        //播放
+
     }
 }
