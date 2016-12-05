@@ -14,8 +14,8 @@
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
     <!-- 开机启动广播权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!--<uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL " /> 无次权限-->
 
+    <!-- <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL " /> 无次权限 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,20 +24,21 @@
         android:supportsRtl="true"
         android:theme="@style/notitle">
         <activity
-            android:name="com.junyou.hbks.SplashActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.junyou.hbks.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <!-- android:exported="true" -->
         <service
-            android:name="com.junyou.hbks.RobMoney"
+            android:name=".RobMoney"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
@@ -52,46 +53,47 @@
         </service>
 
         <activity
-            android:name="com.junyou.hbks.SettingActivity"
+            android:name=".SettingActivity"
             android:label="@string/title_activity_setting"
             android:screenOrientation="portrait"
             android:theme="@style/notitle" />
         <activity
-            android:name="com.junyou.hbks.helpActivity"
+            android:name=".helpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.junyou.hbks.AboutActivity"
+            android:name=".AboutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.junyou.hbks.WebViewActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".WebViewActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.junyou.hbks.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:exported="true"
-            android:theme="@android:style/Theme.Translucent"></activity>
+            android:theme="@android:style/Theme.Translucent" />
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="57d11831e0f55a65cf003c1a"></meta-data>
-        <!--替换目标：value 实现多渠道打包-->
-    <meta-data
+            android:value="57d11831e0f55a65cf003c1a" />
+        <!-- 替换目标：value 实现多渠道打包 -->
+        <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="${UMENG_CHANNEL_VALUE}">
-    </meta-data>
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
         <activity
-            android:name="com.junyou.hbks.VipActivity"
-            android:screenOrientation="portrait"></activity>
+            android:name=".VipActivity"
+            android:screenOrientation="portrait" />
         <!-- 向系统注册receiver -->
-        <receiver android:name="com.junyou.hbks.BootRestartReceiver">
+        <receiver android:name=".BootRestartReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.junyou.hbks.wxapi.WXPayEntryActivity"
-                    android:exported="true"
-                    android:theme="@android:style/Theme.Translucent">
-        </activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity android:name=".LuckyDraw"></activity>
     </application>
 
 </manifest>

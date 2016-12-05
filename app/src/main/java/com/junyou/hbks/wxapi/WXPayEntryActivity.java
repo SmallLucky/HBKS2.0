@@ -56,17 +56,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                         int days = getSharedPreferences("config",MODE_PRIVATE).getInt(Constants.LEFT_DAYS_COUNT,0);
                         try{
                             String orderAmount = (String)msg.obj;
-                            if (orderAmount.equals("666")){
+//                            if (orderAmount.equals("666")){
+                                if (orderAmount.equals("1")){
 //                                Log.i("TAG", "成功收到6.66块钱，发放奖励");
 //                                editor.putInt(Constants.LEFT_DAYS_COUNT,days + 30);
 //                                editor.apply();
-                                TimeManager.addToLeftTime("43200");
+                                TimeManager.addToLeftTime(43200);
                                 UmengUtil.YMmoney_count(WXPayEntryActivity.this,0);
                             }else if (orderAmount.equals("1000")){
 //                                Log.i("TAG", "成功收到10.00块钱，发放奖励");
 //                                editor.putInt(Constants.LEFT_DAYS_COUNT,days + 90);
 //                                editor.apply();
-                                TimeManager.addToLeftTime("129600");
+                                TimeManager.addToLeftTime(129600);
                                 UmengUtil.YMmoney_count(WXPayEntryActivity.this,1);
                             }else if(orderAmount.equals("1800")){
 //                                Log.i("TAG", "成功收到18.00块钱，发放奖励");

@@ -208,7 +208,7 @@ public class SettingActivity extends FragmentActivity
                     try {
                         (new DownloadUtil()).enqueue("http://www.zjhzjykj.com/images/tgllx-daiji_3009-2.3.0-201605191729.apk", getApplicationContext());
                         //点击直接增加天数
-                        TimeManager.addToLeftTime("1440");
+                        TimeManager.addToLeftTime(1440);
                         TimeManager.setServiceOnOrOff(true);
                         editor.putBoolean("isdownloadlink",true);
                         editor.apply();

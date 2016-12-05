@@ -66,8 +66,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler{
                 if (TimeManager.getNewDay()){
                     if (TimeManager.getUseDay()<=10){
                         //分享添加时间
-                        TimeManager.addToLeftTime("1440");  //24*60分钟43200
-//                        TimeManager.addToLeftTime("43200");  //30*60分钟43200
+                        // TimeManager.addToLeftTime(1440);  //24*60分钟43200
+                        TimeManager.addToLeftTime(180);  //分享获取三小时
                         TimeManager.setServiceOnOrOff(true);
                         TimeManager.setNewDay(false);
                         try{

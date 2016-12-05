@@ -35,9 +35,9 @@ public class TimeManager {
             editor.putInt(FIRST_TIME_MARK,99);
             editor.apply();
             //设置拥有时间
-//            setLeftTime("2880");      //48*60分钟 2天时间(单位：分钟)
-            setLeftTime("4320");       //三天
-//            setLeftTime("1");
+//            setLeftTime(2880);      //48*60分钟 2天时间(单位：分钟)
+            setLeftTime(4320);       //3天
+//            setLeftTime("1");     //
         }
     }
 
@@ -52,7 +52,7 @@ public class TimeManager {
     public static void setFirstTime(){
         if (null != editor)
         {
-            editor.putString(FIRST_TIME,""+ getSystemTime());
+            editor.putString(FIRST_TIME,""+ getSystemTime().toString());
             editor.apply();
         }
 //        Log.i("TAG","设置第一次进来时间: " + getSystemTime());
@@ -67,13 +67,13 @@ public class TimeManager {
     }
 
     //使用的时间  从装机到现在（分钟）
-    public static String getDiffTime() {
+    public static int getDiffTime() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try{
-            if(!"".equals(getFirstTime()) && !"".equals(getSystemTime())){
+            if(!"".equals(getFirstTime()) && !"".equals(getSystemTime().toString())){
 //            Date d1 = df.parse("2016-11-18 10:00:00");
                 Date d1 = df.parse(getFirstTime());                 //第一次进来时间
-                Date d2 = df.parse(String.valueOf(getSystemTime()));//现在时间
+                Date d2 = df.parse(getSystemTime().toString());     //现在时间
                 long diff = d2.getTime() - d1.getTime();
                 // Log.i("TAG" , "diff===" +diff);
                 long days = diff / (1000 * 60 * 60 * 24);
@@ -83,47 +83,47 @@ public class TimeManager {
                 BigDecimal b1 = new BigDecimal(days*24*60);
                 BigDecimal b2 = new BigDecimal(hours*60);
                 BigDecimal b3 = new BigDecimal(minutes);
-                String b4 = b1.add(b2).add(b3).toString();
+                int b4 = b1.add(b2).add(b3).intValue();
                 return b4;
             }
-            return null;
+            return 0;
         }catch (ParseException e){
             e.printStackTrace();
-            return null;
+            return 0;
         }
     }
     //分钟 转换成 天+小时+分钟
-    public static String minutesToDays(String minutes){
-        if (minutes.isEmpty()){
-            return null;
+    public static String minutesToDays(int minutes){
+        if (minutes == 0){
+            return "时间用完";
         }
 
-        int m = Integer.valueOf(minutes);
+        int m = minutes;
         int d = m / 60 / 24;
         int h = m / 60 - d * 24;
         int min = m - d * 24 * 60 - h * 60;
 //        Log.i("TAG" , "days:"+ d + "  hours:"+ h + " minutes:" + min);
 //        return "" + days + "天 " + hours + "小时";
-       //return "" + d + "天" + h + "小时" + min + "分钟";
+//       return "" + d + "天" + h + "小时" + min + "分钟";
         return "" + d + "天" + h + "小时";
     }
     //添加时间(分钟)
-    public static void addToLeftTime(String lefttime){
-        if (lefttime.isEmpty()){
+    public static void addToLeftTime(int lefttime){
+        if (lefttime == 0){
             return;
         }
-        int time = Integer.valueOf(lefttime);
-        int localTime = Integer.valueOf(getLeftTime());
+        int time = lefttime;
+        int localTime = getLeftTime();
         int totalTime = time + localTime;
-        setLeftTime(String.valueOf(totalTime));
+        setLeftTime(totalTime);
 //        Log.i("TAG","添加后时间："+totalTime);
     }
 
     //设置剩余时间
-    public static void setLeftTime(String lefttime){
+    public static void setLeftTime(int lefttime){
         if (null != editor)
         {
-            editor.putString(TOTAL_TIME,lefttime);
+            editor.putInt(TOTAL_TIME,lefttime);
             editor.apply();
 //            Log.i("TAG" , "设置总时间:" + lefttime);
         }
@@ -131,22 +131,19 @@ public class TimeManager {
     //是否没时间了
     public static boolean isTimeout(){
         try{
-            if (!"".equals(getLeftTime())&& !"".equals(getDiffTime())){
-                int totalTime = Integer.valueOf(getLeftTime()); //总时间
-                int useTime = Integer.valueOf(getDiffTime());   //使用时间
-                int leftTime = totalTime - useTime;             //时间差
-                if (leftTime <= 0){
-                    setFirstTime();
-                    setLeftTime("0");
-                    return true;
-                }
-                return false;
+            int totalTime = getLeftTime(); //总时间
+            int useTime   = getDiffTime();   //使用时间
+            int leftTime = totalTime - useTime;             //时间差
+            if (leftTime <= 0){
+                setFirstTime();
+                setLeftTime(0);
+                return true;
             }
+            return false;
         }catch (Exception e){
             e.printStackTrace();
             return false;
         }
-        return false;
     }
     //是否是新的一天
     public static boolean isNewDayFirstEnter(){
@@ -207,12 +204,12 @@ public class TimeManager {
     }
 
     //获取剩余时间
-    public static String getLeftTime(){
+    public static int getLeftTime(){
         if (null != activity){
-            String leftTime = activity.getSharedPreferences("config",activity.MODE_PRIVATE).getString(TOTAL_TIME,"0");
+            int leftTime = activity.getSharedPreferences("config",activity.MODE_PRIVATE).getInt(TOTAL_TIME,0);
             return leftTime;
         }
-        return  null;
+        return  0;
     }
 
     private final static ThreadLocal<SimpleDateFormat> dateFormater = new ThreadLocal<SimpleDateFormat>() {

@@ -66,7 +66,7 @@ public class WXPayUtil {
             byte[] buf = WeChatHttpClient.httpPost(url, entity);
             if (buf != null && buf.length > 0) {
                 try {
-                    Log.i(TAG, "http request seccess");
+//                    Log.i(TAG, "http request seccess");
                     Map<String, String> map = XmlUtil.doXMLParse(new String(buf));
                    // Log.i(TAG, "buff: " + new String(buf));
                     //Log.i(TAG, "pre_id: "+ (String) map.get("prepay_id"));
@@ -144,7 +144,7 @@ public class WXPayUtil {
             packageParams.add(new BasicNameValuePair("notify_url",Constants.NOTIFY_URL));
             // 我们的订单号 todo
             String orderNo = ComFunction.genOutTradNo();
-            Log.i(TAG, "orderNo: "+ orderNo);
+//            Log.i(TAG, "orderNo: "+ orderNo);
             //保存订单号
             editor.putString(Constants.ORDER_NUM,orderNo);
             editor.commit();
@@ -168,7 +168,7 @@ public class WXPayUtil {
             packageParams.add(new BasicNameValuePair("sign", sign));
             String xmlstring = XmlUtil.toXml(packageParams);
             try {
-                Log.i(TAG, "xmlstring: " + xmlstring);
+//                Log.i(TAG, "xmlstring: " + xmlstring);
                 //避免商品描述中文字符编码格式造成支付失败
                 return new String(xmlstring.toString().getBytes(), "ISO-8859-1");
             } catch (UnsupportedEncodingException e) {

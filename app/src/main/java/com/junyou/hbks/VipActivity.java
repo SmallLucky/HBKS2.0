@@ -58,7 +58,7 @@ public class VipActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedP.edit();
                         editor.putString(Constants.MONEY_NUM,"666");
 //                        editor.putString(Constants.MONEY_NUM,"1");
-                        editor.commit();
+                        editor.apply();
                         WXPayUtil.getInstance().new GetPrepayIdTask().execute();
                         UmengUtil.YMclk_one_vip(this);
                     }
@@ -85,7 +85,7 @@ public class VipActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedP.edit();
                         editor.putString(Constants.MONEY_NUM,"1000");
 //                        editor.putString(Constants.MONEY_NUM,"2");
-                        editor.commit();
+                        editor.apply();
                         WXPayUtil.getInstance().new GetPrepayIdTask().execute();
                         UmengUtil.YMclk_three_vip(this);
                     }
@@ -113,7 +113,7 @@ public class VipActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedP.edit();
                         editor.putString(Constants.MONEY_NUM,"1800");
 //                        editor.putString(Constants.MONEY_NUM,"3");
-                        editor.commit();
+                        editor.apply();
                         WXPayUtil.getInstance().new GetPrepayIdTask().execute();
                         UmengUtil.YMclk_alife_vip(this);
                     }

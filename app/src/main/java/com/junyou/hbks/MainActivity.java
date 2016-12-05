@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
         new TimeThread().start();
         showSettingDialog();
         SignInUtil.init(this);
-        Log.i("TAG", "onCreate: <<<<<<<<<<<<<<<<<<<<<" + SignInUtil.getCurTime());
+//        Log.i("TAG", "onCreate: <<<<<<<<<<<<<<<<<<<<<" + SignInUtil.getCurTime());
         setSignedBtn();
 }
 
@@ -218,18 +218,16 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
                         setCurTime(getResources().getString(R.string.forever));
                         return;
                     }
-                    if (!"".equals(TimeManager.getLeftTime())&& !"".equals(TimeManager.getDiffTime())){
-                        int totalTime = Integer.valueOf(TimeManager.getLeftTime());
-                        int useTime = Integer.valueOf(TimeManager.getDiffTime());
+                        int totalTime = TimeManager.getLeftTime();
+                        int useTime = TimeManager.getDiffTime();
                         int leftTime = totalTime - useTime;
-//                    Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(""+ leftTime));
-                        setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
+//                    Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(leftTime));
+                        setCurTime("" + TimeManager.minutesToDays(leftTime)); //更新时间
                         if (TimeManager.isTimeout()){
                             //没有时间了
                             setCurTime("时间用完");
 //                         Log.i("TAG","没有时间了");
                         }
-                    }
                     break;
             }
         }
@@ -257,18 +255,15 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
             setCurTime(getResources().getString(R.string.forever));
             return;
         }
-
-        if (!"".equals(TimeManager.getLeftTime())&& !"".equals(TimeManager.getDiffTime())) {
-            int totalTime = Integer.valueOf(TimeManager.getLeftTime());
-            int useTime = Integer.valueOf(TimeManager.getDiffTime());
+            int totalTime = TimeManager.getLeftTime();
+            int useTime = TimeManager.getDiffTime();
             int leftTime = totalTime - useTime;
-//      Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(""+ leftTime));
-            setCurTime("" + TimeManager.minutesToDays(""+ leftTime)); //更新时间
+//      Log.i("TAG","总时间:" + totalTime + "  使用时间:" + useTime + "  剩余时间:" + TimeManager.minutesToDays(leftTime));
+            setCurTime("" + TimeManager.minutesToDays( leftTime)); //更新时间
             if (TimeManager.isTimeout()){
                 //没有时间了
                 setCurTime( "时间用完");
             }
-        }
     }
 
     private CharSequence getSystemTime() {
@@ -1079,7 +1074,7 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
 
     public void superVipClick(View view)
     {
-        Log.i("TAG", "点击弹出超级VIP弹窗");
+//        Log.i("TAG", "点击弹出超级VIP弹窗");
         try {
             Intent settingAvt = new Intent(this,VipActivity.class);
             startActivity(settingAvt);
@@ -1418,18 +1413,21 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
     }
 
     private void setSignedBtn(){
+//        if (null != signed_btn){
+//            signed_btn.setVisibility(View.INVISIBLE);
+//        }
+
         if(SignInUtil.isNewDay()){
             if(!SignInUtil.getSignedToday()) {
                 if (null != signed_btn){
                     signed_btn.setText("点击签到");
-                    Log.i("TAG","没有签到、");
+//                    Log.i("TAG","没有签到、");
                 }
             }
         }else{
             if (null != signed_btn){
                 signed_btn.setText("已经签到");
-                Log.i("TAG","签到了、");
-
+//                Log.i("TAG","签到了、");
             }
         }
     }
@@ -1441,15 +1439,27 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
                 SignInUtil.setSignedToday(true);
                 SignInUtil.setFirstTime(SignInUtil.getCurTime());
                 SignInUtil.addSignedCont();
-                Log.i("TAG","没有签到......签到" + SignInUtil.getSignedCount() + "天");
+//                Log.i("TAG","没有签到......签到" + SignInUtil.getSignedCount() + "天");
+                TimeManager.addToLeftTime(60);      //签到获取一小时
                 if (null != signed_btn){
                     signed_btn.setText("已经签到");
                 }
             }else{
-                Log.i("TAG","已经签到......");
+//                Log.i("TAG","已经签到......");
             }
         }else{
             Log.i("TAG","not new day......");
+            Toast.makeText(getApplicationContext(), "今日已经签到!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void luckyDrawClick(View view){
+        Log.i("TAG","抽奖");
+        try {
+            Intent helpAvt = new Intent(MainActivity.this,LuckyDraw.class);
+            startActivity(helpAvt);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
