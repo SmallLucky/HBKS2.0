@@ -72,7 +72,8 @@ public class DBContext extends ContextWrapper {
      *              android.database.DatabaseErrorHandler)
      */
     @Override
-    public SQLiteDatabase openOrCreateDatabase(String name, int mode, SQLiteDatabase.CursorFactory factory,
+    public SQLiteDatabase openOrCreateDatabase(String name, int mode,
+                                               SQLiteDatabase.CursorFactory factory,
                                                DatabaseErrorHandler errorHandler) {
         SQLiteDatabase result = SQLiteDatabase.openOrCreateDatabase(getDatabasePath(name), null);
         return result;
