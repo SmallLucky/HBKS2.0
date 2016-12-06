@@ -1,5 +1,6 @@
 package com.junyou.hbks;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.junyou.hbks.Utils.UmengUtil;
 import com.junyou.hbks.luckydraw.AngleUtil;
 import com.junyou.hbks.luckydraw.LuckyDrawLayout;
 import com.junyou.hbks.luckydraw.RotatePlate;
@@ -17,8 +19,9 @@ public class LuckyDraw extends AppCompatActivity implements RotatePlate.Animatio
     private RotatePlate mRotateP;
     private LuckyDrawLayout mLuckyDrawL;
     private ImageView mGoBtn;
-    private String[] strs = {"华为手机","谢谢惠顾","iPhone 6s","mac book","魅族手机","小米手机"};
-
+//    private String[] strs = {"华为手机","谢谢惠顾","iPhone 6s","mac book","魅族手机","小米手机"};
+    private String[] strs = {"一小时使用时间","谢谢惠顾","三小时使用时间","一个月VIP","三个月VIP","终身VIP"};
+//    {"一小时使用时间","谢谢惠顾","三小时使用时间","一个月VIP","三个月VIP","终身VIP"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +78,30 @@ public class LuckyDraw extends AppCompatActivity implements RotatePlate.Animatio
     }
 
     public void rotationClick(View view){
-        Log.i("TAG","转...");
         mRotateP.startRotate(-1);
         mLuckyDrawL.setDelayTime(100);
         mGoBtn.setEnabled(false);
+    }
+
+    public void superVipClick(View view)
+    {
+        try {
+            Intent vipAvt = new Intent(this,VipActivity.class);
+            startActivity(vipAvt);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void convert_oneMonth(View view){
+        Log.i("TAG","one month");
+    }
+
+    public void convert_twoMonth(View view){
+        Log.i("TAG","two month");
+    }
+
+    public void convert_allLife(View view){
+        Log.i("TAG","all life");
     }
 }

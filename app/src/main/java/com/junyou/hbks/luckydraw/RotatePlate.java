@@ -37,7 +37,8 @@ public class RotatePlate extends View {
     public static final int FLING_VELOCITY_DOWNSCALE = 4;
 
     private int[] images = new int[]{R.mipmap.huawei,R.mipmap.image_one,R.mipmap.iphone,R.mipmap.macbook,R.mipmap.meizu,R.mipmap.xiaomi};
-    private String[] strs = {"华为手机","谢谢惠顾","iPhone 6s","mac book","魅族手机","小米手机"};
+//    private String[] strs = {"华为手机","谢谢惠顾","iPhone 6s","mac book","魅族手机","小米手机"};
+    private String[] strs = {"一小时使用时间","谢谢惠顾","三小时使用时间","一个月VIP","三个月VIP","终身VIP"};
     private List<Bitmap> bitmaps = new ArrayList<>();
     private GestureDetectorCompat mDetector;
     private ScrollerCompat scroller;
