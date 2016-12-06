@@ -1455,23 +1455,11 @@ public class MainActivity extends AppCompatActivity implements AccessibilityMana
     }
 
     public void luckyDrawClick(View view){
-
-//        try {
-//            Intent helpAvt = new Intent(MainActivity.this,LuckyDraw.class);
-//            startActivity(helpAvt);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
-        if (LocalSaveUtil.isHavedSDcard()){
-            Log.i("TAG","有sd卡");
-            String str1 = LocalSaveUtil.getDataFolderPath(this);
-            String str2 = LocalSaveUtil.getMyCacheDir(this);
-            String str3 = LocalSaveUtil.getMyFileDir(this);
-            String str4 = LocalSaveUtil.getRootPath();
-            Log.i("TAG",str1 + "/n  <<<" + str2 + "/n  <<<" + str3 + "/n <<<" + str4);
-        }else{
-            Log.i("TAG","没有sd卡");
+        try {
+            Intent helpAvt = new Intent(MainActivity.this,LuckyDraw.class);
+            startActivity(helpAvt);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
